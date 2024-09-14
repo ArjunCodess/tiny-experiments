@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* Global styles */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: "Inter", sans-serif;
+}
+
+/* Container styles */
+.solar-system-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    background: linear-gradient(to bottom right, #1a202c, #000000);
+}
+
+.solar-system {
+    position: relative;
+    width: 100%;
+    max-width: 50rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 1.5rem;
+    background-color: rgba(31, 41, 55, 0.5);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+/* Star styles */
+.star {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+/* Sun styles */
+.sun {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 5rem;
+    height: 5rem;
+    background-color: #ecc94b;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 60px 20px rgba(255, 255, 0, 0.4);
+}
+
+/* Orbit styles */
+.orbit {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    border: 1px solid #4b5563;
+    transform: translate(-50%, -50%);
+}
+
+/* Planet styles */
+.planet-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1px;
+    height: 1px;
+}
+
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.planet:hover {
+    transform: scale(3); /* Increased from 1.2 to 3 (300%) */
+    z-index: 10; /* Ensure the hovered planet appears above others */
+}
+
+.planet.focused {
+    transform: scale(3);
+    z-index: 10;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+}
+
+.planet.dimmed {
+    opacity: 0.5;
+}
+
+/* Focused planet info styles */
+.focused-planet-info {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    background-color: rgba(31, 41, 55, 0.9);
+    color: white;
+    padding: 1rem;
+    padding-top: 0;
+    border-radius: 0.75rem;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 100;
+}
+
+.focused-planet-info.visible {
+    opacity: 1;
+}
+
+.focused-planet-info h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.focused-planet-info p {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.focused-planet-info button {
+    padding: 0.5rem 1rem;
+    background-color: #2563eb;
+    color: white;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.focused-planet-info button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Animations */
+@keyframes orbit {
+    from {
+        transform: rotate(0deg) translateX(-50%) translateY(-50%);
+    }
+
+    to {
+        transform: rotate(360deg) translateX(-50%) translateY(-50%);
+    }
+}
+
+@keyframes twinkle {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+}
+
+/* Solar System Facts Button */
+.solar-system-facts-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #2563eb;
+    color: white;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.solar-system-facts-button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Solar System Facts Card */
+.solar-system-facts {
+    position: fixed;
+    width: 80%;
+    max-width: 30rem;
+    background-color: rgba(31, 41, 55, 0.9);
+    color: white;
+    padding: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 0.75rem;
+    backdrop-filter: blur(4px);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.facts-drag-handle {
+    padding: 10px;
+    background-color: rgba(37, 99, 235, 0.8);
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+    margin: -1.5rem -1.5rem 1rem -1.5rem;
+    cursor: move;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-button {
+    height: 30px;
+    width: 30px;
+    background-color: rgba(22, 96, 255, 0.8);
+    color: white;
+    border-radius: 100%;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background-color: #ff3a3a;
+}
+
+.solar-system-facts.visible {
+    opacity: 1;
+}
+
+.solar-system-facts h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.solar-system-facts ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.solar-system-facts li {
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Shooting Star */
+@keyframes shootingStar {
+    0% { transform: translateX(0) translateY(0); opacity: 1; }
+    100% { transform: translateX(-300px) translateY(300px); opacity: 0; }
+}
+
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: #fff;
+    top: 0;
+    right: 0;
+    animation: shootingStar 2s linear infinite;
+}
+
+.search-container {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 20;
+}
+
+#searchInput {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 200px;
+}
+
+.autocomplete-results {
+    position: absolute;
+    background-color: rgba(31, 41, 55, 0.9);
+    border-radius: 0.5rem;
+    width: 215px;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+}
+
+.autocomplete-item {
+    padding: 0.5rem;
+    cursor: pointer;
+    color: white;
+}
+
+.autocomplete-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.highlight {
+    background-color: rgba(255, 255, 0, 0.3);
+}
