@@ -1,0 +1,103 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: #000;
+}
+
+.space {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, #1B2735 0%, #090A0F 100%);
+    overflow: hidden;
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    animation: rotate 240s linear infinite;
+}
+
+.star {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #fff;
+    animation: twinkle 5s infinite;
+}
+
+.nebula {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    animation: pulse 20s infinite alternate;
+}
+
+.nebula-1 {
+    background: radial-gradient(circle at 30% 50%, rgba(255, 0, 128, 0.3), transparent 70%),
+        radial-gradient(circle at 70% 50%, rgba(0, 255, 255, 0.3), transparent 70%);
+}
+
+.nebula-2 {
+    background: radial-gradient(circle at 50% 30%, rgba(128, 0, 255, 0.3), transparent 70%),
+        radial-gradient(circle at 50% 70%, rgba(255, 255, 0, 0.3), transparent 70%);
+    animation-delay: -10s;
+}
+
+.comet {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: #fff;
+    box-shadow: 0 0 20px 2px rgba(255, 255, 255, 0.5);
+    animation: comet 10s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes comet {
+    from {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+
+    to {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
