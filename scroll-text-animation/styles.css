@@ -1,0 +1,125 @@
+@import url('https://unpkg.com/normalize.css') layer(normalize);
+
+@layer normalize, base, demo;
+
+/* Font Face */
+@font-face {
+    font-family: 'Humane Bold';
+    src: url('https://assets.codepen.io/605876/Humane-VF.ttf');
+}
+
+/* Custom Property */
+@property --flip {
+    inherits: true;
+    syntax: '<integer>';
+    initial-value: 0;
+}
+
+/* Base Layer */
+@layer base {
+    :root {
+        --font-size-min: 16;
+        --font-size-max: 20;
+        --font-ratio-min: 1.2;
+        --font-ratio-max: 1.33;
+        --font-width-min: 375;
+        --font-width-max: 1500;
+    }
+
+    html {
+        color-scheme: light dark;
+    }
+
+    body {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        font-family: 'SF Pro Text', 'SF Pro Icons', 'AOS Icons', 'Helvetica Neue',
+            Helvetica, Arial, sans-serif, system-ui;
+    }
+
+    :where(.fluid) {
+        --fluid-min: calc(var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0)));
+        --fluid-max: calc(var(--font-size-max) * pow(var(--font-ratio-max), var(--font-level, 0)));
+        --fluid-preferred: calc((var(--fluid-max) - var(--fluid-min)) / (var(--font-width-max) - var(--font-width-min)));
+        --fluid-type: clamp(
+            (var(--fluid-min) / 16) * 1rem,
+            ((var(--fluid-min) / 16) * 1rem) - (((var(--fluid-preferred) * var(--font-width-min)) / 16) * 1rem) + (var(--fluid-preferred) * var(--variable-unit, 100vi)),
+            (var(--fluid-max) / 16) * 1rem
+        );
+        font-size: var(--fluid-type);
+        line-height: 1;
+    }
+
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+}
+
+/* Demo Layer */
+@layer demo {
+    body {
+        align-content: start;
+        height: 120vh;
+    }
+
+    main {
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        view-timeline: --main;
+    }
+
+    h2 {
+        --font-level: 9;
+        text-wrap: balance;
+        margin: 0;
+        line-height: 0.8;
+        letter-spacing: 0.1ch;
+        font-family: 'Humane Bold', sans-serif;
+        text-transform: uppercase;
+        font-weight: 600;
+        animation: show both linear;
+        animation-timeline: view();
+        animation-range: cover;
+        clip-path: inset(0 0 0 0);
+    }
+
+    h2 > span:first-of-type {
+        --font-level: 8;
+        opacity: calc(1 - (var(--flip) * 0.8));
+        transition: opacity 0.5s linear(
+            0 0%, 0.0036 9.62%, 0.0185 16.66%, 0.0489 23.03%,
+            0.0962 28.86%, 0.1705 34.93%, 0.269 40.66%, 0.3867 45.89%,
+            0.5833 52.95%, 0.683 57.05%, 0.7829 62.14%, 0.8621 67.46%,
+            0.8991 70.68%, 0.9299 74.03%, 0.9545 77.52%, 0.9735 81.21%,
+            0.9865 85%, 0.9949 89.15%, 1 100%
+        );
+    }
+
+    h2 .char {
+        display: inline-block;
+        translate: 0 calc((1 - var(--flip)) * 1.2lh);
+        transition: translate 0.5s calc(sin(var(--char-index) / var(--char-total) * 45deg) * 0.5s) linear(
+            0 0%, 0.0036 9.62%, 0.0185 16.66%, 0.0489 23.03%,
+            0.0962 28.86%, 0.1705 34.93%, 0.269 40.66%, 0.3867 45.89%,
+            0.5833 52.95%, 0.683 57.05%, 0.7829 62.14%, 0.8621 67.46%,
+            0.8991 70.68%, 0.9299 74.03%, 0.9545 77.52%, 0.9735 81.21%,
+            0.9865 85%, 0.9949 89.15%, 1 100%
+        );
+    }
+
+    @keyframes show {
+        to {
+            --flip: 1;
+        }
+    }
+}
