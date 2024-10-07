@@ -1,0 +1,151 @@
+@import url('https://unpkg.com/normalize.css') layer(normalize);
+
+@font-face {
+    font-family: 'Departure Mono';
+    src: url('https://assets.codepen.io/605876/DepartureMono-Regular.woff');
+}
+
+@layer normalize, base, demo;
+
+@layer demo {
+
+    header,
+    main {
+        --font-level: 3.5;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: 'Departure Mono', monospace;
+        text-transform: uppercase;
+    }
+
+    .encrypted {
+        --step-start: calc(var(--start, 0) * 1%);
+        --step-end: calc(var(--end, -0.2) * 1%);
+        view-timeline: --heading;
+        width: 30ch;
+        max-width: calc(100vw - 2rem);
+    }
+
+    p {
+        margin: 0;
+        opacity: 0.8;
+        line-height: 1;
+    }
+
+    [data-char] {
+        width: 1ch;
+        height: 1lh;
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+    }
+
+    [data-char] span {
+        position: absolute;
+        width: 1ch;
+        translate: -50% 0;
+        word-break: break-word;
+        white-space: break-spaces;
+        bottom: 0%;
+        left: 50%;
+        animation: track both steps(var(--track, 10));
+        animation-timeline: --heading;
+        animation-range: contain calc(0% + (var(--char-index) * var(--step-start))) calc(50% + (var(--char-index) * var(--step-end)));
+    }
+
+    .word {
+        white-space: nowrap;
+    }
+
+    h1 {
+        line-height: 1;
+        margin: 0;
+    }
+
+    @keyframes track {
+        to {
+            translate: -50% calc(100% - 1lh);
+        }
+    }
+}
+
+@layer base {
+    :root {
+        --font-size-min: 16;
+        --font-size-max: 20;
+        --font-ratio-min: 1.2;
+        --font-ratio-max: 1.33;
+        --font-width-min: 375;
+        --font-width-max: 1500;
+    }
+
+    html {
+        color-scheme: light dark;
+    }
+
+    [data-theme='light'] {
+        color-scheme: light only;
+    }
+
+    [data-theme='dark'] {
+        color-scheme: dark only;
+    }
+
+    :where(.fluid *),
+    :where(.fluid) {
+        --fluid-min: calc(var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0)));
+        --fluid-max: calc(var(--font-size-max) * pow(var(--font-ratio-max), var(--font-level, 0)));
+        --fluid-preferred: calc((var(--fluid-max) - var(--fluid-min)) / (var(--font-width-max) - var(--font-width-min)));
+        --fluid-type: clamp((var(--fluid-min) / 16) * 1rem,
+                ((var(--fluid-min) / 16) * 1rem) - (((var(--fluid-preferred) * var(--font-width-min)) / 16) * 1rem) + (var(--fluid-preferred) * var(--variable-unit, 100vi)),
+                (var(--fluid-max) / 16) * 1rem);
+        font-size: var(--fluid-type);
+    }
+
+    *,
+    *:after,
+    *:before {
+        box-sizing: border-box;
+    }
+
+    body {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        font-family: 'SF Pro Text', 'SF Pro Icons', 'AOS Icons', 'Helvetica Neue',
+            Helvetica, Arial, sans-serif, system-ui;
+        padding-bottom: 60px; /* Adjust this value based on your footer's height */
+    }
+
+    /* Utilities */
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+}
+
+div.tp-dfwv {
+    position: fixed;
+}
+
+.footer {
+    width: 100%;
+    text-align: center;
+}
+
+.footer a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
