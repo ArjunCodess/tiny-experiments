@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixel Art Creator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main id="app" class="fade-in">
+        <h1>Pixel Art Creator</h1>
+        <div class="content">
+            <div id="controls">
+                <div id="left-controls">
+                    <div class="control-group">
+                        <label for="colorPicker">Color:</label>
+                        <input type="color" id="colorPicker" value="#000000">
+                    </div>
+                    <div class="control-group">
+                        <button id="clearBtn">Clear</button>
+                        <button id="saveBtn">Save</button>
+                    </div>
+                </div>
+                <hr />
+                <div id="right-controls">
+                    <div id="eraser-controls">
+                        <button id="eraserBtn">Eraser</button>
+                        <div class="size-controls">
+                            <button id="decreaseEraserSize">-</button>
+                            <span id="eraserSize">1</span>
+                            <button id="increaseEraserSize">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="grid-container">
+                <div id="grid"></div>
+                <div id="cursorPreview"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>
+            built by
+            <a href="https://arjuncodess.vercel.app" target="_blank" rel="noopener noreferrer">
+                @arjuncodess
+            </a>
+        </p>
+    </footer>
+
+    <script type="module" src="./script.js"></script>
+</body>
+
+</html>
