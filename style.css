@@ -1,22 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+:root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+}
+
+.dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #e6f3ff, #c9e6ff, #a3d5ff);
-    color: #333333;
+    color: hsl(var(--foreground));
+    background-color: transparent; /* Changed from hsl(var(--background)) */
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    overflow-x: hidden;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: background-color 0.3s ease, background-image 0.3s ease;
+}
+
+/* Light mode background */
+.background-container {
+    background-color: white;
+    background-image: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(to right, #b0b0b02e 1px, transparent 1px),
+        linear-gradient(to bottom, #7f7f7f0a 1px, transparent 1px);
+    background-size: 14px 24px;
+}
+
+/* Dark mode background */
+.dark .background-container {
+    background-color: black;
+    background-image: none;
+}
+
+.dark .background-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(to right, #4f4f4f2e 1px, transparent 1px),
+        linear-gradient(to bottom, #8080800a 1px, transparent 1px);
+    background-size: 14px 24px;
+}
+
+.dark .background-container::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -10%;
+    height: 1000px;
+    width: 1000px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: radial-gradient(circle 400px at 50% 300px, #fbfbfb36, transparent);
+}
+
+.content {
+    width: 100%;
+    max-width: 1160px;
+    padding: 20px;
     box-sizing: border-box;
 }
 
 h1 {
     text-align: center;
-    font-size: 2.5em;
+    font-size: 2.5rem;
+    font-weight: 700;
     margin-top: 20px;
     margin-bottom: 0px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    color: hsl(var(--primary));
 }
 
 #projectsContainer {
@@ -34,58 +149,105 @@ h1 {
 }
 
 .project {
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
+    background-color: hsl(var(--card));
+    border-radius: var(--radius);
     padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid gray;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid hsl(var(--border));
 }
 
 .project:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .project h2 {
     margin-top: 0;
-    font-size: 1.5em;
-    color: #333333;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: hsl(var(--card-foreground));
 }
 
 .project p {
-    font-size: 0.9em;
-    color: #555555;
+    font-size: 0.875rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.25rem;
+    color: hsl(var(--muted-foreground));
 }
 
 .project a {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 10px;
-    padding: 8px 15px;
-    background-color: #4a90e2;
-    color: #ffffff;
+    padding: 8px 16px;
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 0.875rem;
     transition: background-color 0.3s ease;
 }
 
 .project a:hover {
-    background-color: #3a78c2;
+    background-color: hsl(var(--primary) / 0.9);
 }
 
 .built-by {
     text-align: center;
-    font-size: 0.9em;
+    font-size: 0.875rem;
     margin-bottom: 30px;
-    color: #555555;
+    color: hsl(var(--muted-foreground));
 }
 
 .built-by a {
-    color: #4a90e2;
+    color: hsl(var(--primary));
     text-decoration: none;
     transition: color 0.3s ease;
-    text-decoration: underline;
+    font-weight: 500;
 }
 
 .built-by a:hover {
-    color: #3a78c2;
+    text-decoration: underline;
+}
+
+.page-title {
+    font-size: 2.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    font-weight: 700;
+    color: hsl(var(--foreground));
+    margin-bottom: 1rem;
+}
+
+#theme-toggle {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+    border: 1px solid hsl(var(--border));
+}
+
+#theme-toggle:hover {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+}
+
+.dark #theme-toggle {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+    border: 1px solid hsl(var(--border));
+}
+
+.dark #theme-toggle:hover {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+}
+
+#theme-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+#theme-toggle .lucide-sun,
+#theme-toggle .lucide-moon {
+    color: hsl(var(--foreground));
 }

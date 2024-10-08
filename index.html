@@ -6,67 +6,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiny Experiments | ArjunCodess</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-    <h1>Tiny Experiments w/ Pure CSS</h1>
-    <p class="built-by">built by <a href="https://arjuncodess.vercel.app/" target="_blank">@arjuncodess</a></p>
-
-    <div id="projectsContainer">
-        <div class="project">
-            <h2>Cosmic Nebula</h2>
-            <p>Calming starry night scene with a gradient background and animated stars.</p>
-            <a href="https://arjuncodess.github.io/tiny-experiments/cosmic-nebula">View Project</a>
+    <div class="background-container"></div>
+    <div class="content">
+        <div class="flex justify-end mb-4">
+            <button id="theme-toggle" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon block"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+                <span class="sr-only">Toggle theme</span>
+            </button>
         </div>
 
-        <div class="project">
-            <h2>Cosmic Tapestry</h2>
-            <p>Interactive cosmic web where nodes expand on hover.</p>
-            <a href="https://arjuncodess.github.io/tiny-experiments/cosmic-tapestry">View Project</a>
-        </div>
+        <h1 class="page-title">Tiny Experiments w/ Pure CSS</h1>
+        <p class="built-by">built by <a href="https://arjuncodess.vercel.app/" target="_blank">@arjuncodess</a></p>
 
-        <div class="project">
-            <h2>Solar System</h2>
-            <p>Depiction of the solar system with hoverable planets and interactive facts.</p>
-            <a href="https://arjuncodess.github.io/tiny-experiments/solar-system">View Project</a>
-        </div>
+        <div id="projectsContainer">
+            <div class="project">
+                <h2>Cosmic Nebula</h2>
+                <p>Calming starry night scene with a gradient background and animated stars.</p>
+                <a href="https://arjuncodess.github.io/tiny-experiments/cosmic-nebula">View Project</a>
+            </div>
 
-        <div class="project">
-            <h2>Terminal Portfolio</h2>
-            <p>Terminal-style portfolio with a command-line interface with custom commands.</p>
-            <a href="https://arjuncodess.github.io/tiny-experiments/terminal-portfolio">View Project</a>
-        </div>
+            <div class="project">
+                <h2>Cosmic Tapestry</h2>
+                <p>Interactive cosmic web where nodes expand on hover.</p>
+                <a href="https://arjuncodess.github.io/tiny-experiments/cosmic-tapestry">View Project</a>
+            </div>
 
-        <div class="project">
-            <h2>Text Scroll Animation</h2>
-            <p>CSS custom props and scroll animation for staggered effects.</p>
-            <a href="https://arjuncodess.github.io/tiny-experiments/scroll-text-animation">View Project</a>
-        </div>
+            <div class="project">
+                <h2>Solar System</h2>
+                <p>Depiction of the solar system with hoverable planets and interactive facts.</p>
+                <a href="https://arjuncodess.github.io/tiny-experiments/solar-system">View Project</a>
+            </div>
 
-        <div class="project">
-            <h2>Scroll Video Animation</h2>
-            <p>CSS only scroll-driven mask using SVG pathLength trick & mix-blend-mode.</p>
-            <a href="https://arjuncodess.github.io/tiny-experiments/scroll-video-animation">View Project</a>
-        </div>
+            <div class="project">
+                <h2>Terminal Portfolio</h2>
+                <p>Terminal-style portfolio with custom commands.</p>
+                <a href="https://arjuncodess.github.io/tiny-experiments/terminal-portfolio">View Project</a>
+            </div>
 
-        <div class="project">
-            <h2>Unblur Text Effect</h2>
-            <p>CSS scroll to unblur text.</p>
-            <a href="https://arjuncodess.github.io/tiny-experiments/scroll-unblur-text-effect">View Project</a>
-        </div>
+            <div class="project">
+                <h2>Text Scroll Animation</h2>
+                <p>CSS custom props and scroll animation for staggered effects.</p>
+                <a href="https://arjuncodess.github.io/tiny-experiments/scroll-text-animation">View Project</a>
+            </div>
 
-        <div class="project">
-            <h2>Scroll To Decrypt</h2>
-            <p>CSS crypted text reveal on scroll.</p>
-            <a href="https://arjuncodess.github.io/tiny-experiments/scroll-text-decrypt-effect">View Project</a>
-        </div>
+            <div class="project">
+                <h2>Scroll Video Animation</h2>
+                <p>CSS only scroll-driven mask using SVG pathLength trick & mix-blend-mode.</p>
+                <a href="https://arjuncodess.github.io/tiny-experiments/scroll-video-animation">View Project</a>
+            </div>
 
-        <div class="project">
-            <h2>Pixel Art Creator</h2>
-            <p>Tool for creating pixel art.</p>
-            <a href="https://arjuncodess.github.io/tiny-experiments/pixel-art-creator">View Project</a>
+            <div class="project">
+                <h2>Unblur Text Effect</h2>
+                <p>CSS scroll to unblur text.</p>
+                <a href="https://arjuncodess.github.io/tiny-experiments/scroll-unblur-text-effect">View Project</a>
+            </div>
+
+            <div class="project">
+                <h2>Scroll To Decrypt</h2>
+                <p>CSS crypted text reveal on scroll.</p>
+                <a href="https://arjuncodess.github.io/tiny-experiments/scroll-text-decrypt-effect">View Project</a>
+            </div>
+
+            <div class="project">
+                <h2>Pixel Art Creator</h2>
+                <p>Tool for creating pixel art.</p>
+                <a href="https://arjuncodess.github.io/tiny-experiments/pixel-art-creator">View Project</a>
+            </div>
+
+            <div class="project">
+                <h2>Memory Card Game</h2>
+                <p>Memory game with card matching and score tracking.</p>
+                <a href="https://arjuncodess.github.io/tiny-experiments/memory-card-game">View Project</a>
+            </div>
         </div>
     </div>
+
+    <script>
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+        const moonIcon = themeToggle.querySelector('.lucide-moon');
+        const sunIcon = themeToggle.querySelector('.lucide-sun');
+
+        // Function to update the icon visibility
+        function updateThemeToggleIcon(isDark) {
+            moonIcon.classList.toggle('hidden', isDark);
+            sunIcon.classList.toggle('hidden', !isDark);
+        }
+
+        // Check for saved theme preference or use the system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+        // Apply the initial theme
+        if (initialTheme === 'dark') {
+            html.classList.add('dark');
+        }
+
+        // Update the initial icon state
+        updateThemeToggleIcon(initialTheme === 'dark');
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeToggleIcon(isDark);
+        });
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                const newTheme = e.matches ? 'dark' : 'light';
+                html.classList.toggle('dark', e.matches);
+                updateThemeToggleIcon(e.matches);
+            }
+        });
+    </script>
 </body>
 
 </html>
